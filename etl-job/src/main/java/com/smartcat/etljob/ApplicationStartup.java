@@ -6,7 +6,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> {
@@ -21,6 +20,10 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		System.out.println("EMINAAAAAAAAAAAAAAAAAAAAA");
-		etlJobService.callShiftsAPI();
+		try {
+			etlJobService.getShifts();
+		} catch(Exception e) {
+			System.out.println("Connection with Shifts API was not successful!");
+		}
 	}
 }

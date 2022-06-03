@@ -41,7 +41,7 @@ public class Shift {
 	@NotNull
 	private Timestamp shiftFinish;
 
-	@Column(name = "shift_cost")
+	@Column(name = "shift_cost", precision = 13, scale = 4)
 	private double shiftCost;
 
 	@JsonManagedReference

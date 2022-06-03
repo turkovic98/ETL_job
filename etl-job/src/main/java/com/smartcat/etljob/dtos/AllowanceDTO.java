@@ -12,6 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AllowanceDTO {
+
+	private UUID id;
+	private float value;
+	private double cost;
+
 	@Override
 	public String toString() {
 		return "AllowanceDTO{" +
@@ -20,8 +25,4 @@ public class AllowanceDTO {
 			       ", cost=" + cost +
 			       '}';
 	}
-
-	private UUID id;
-	private float value;
-	private double cost;
 }

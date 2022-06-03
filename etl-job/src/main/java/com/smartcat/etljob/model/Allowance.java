@@ -33,7 +33,7 @@ public class Allowance {
 	@NotNull
 	private float allowanceValue;
 
-	@Column(name = "allowance_cost")
+	@Column(name = "allowance_cost", precision = 13, scale = 4)
 	@NotNull
 	private double allowanceCost;
 

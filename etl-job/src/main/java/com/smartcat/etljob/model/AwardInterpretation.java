@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -38,7 +39,7 @@ public class AwardInterpretation {
 	@NotNull
 	private float awardUnits;
 
-	@Column(name = "award_cost")
+	@Column(name = "award_cost", precision = 13, scale = 4)
 	@NotNull
 	private double awardCost;
 

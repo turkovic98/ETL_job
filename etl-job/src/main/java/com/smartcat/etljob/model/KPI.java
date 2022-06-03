@@ -27,7 +27,7 @@ public class KPI {
 	@NotNull
 	private LocalDate kpiDate;
 
-	@Column(name = "kpi_value")
+	@Column(name = "kpi_value", precision = 8, scale = 2)
 	@NotNull
 	private double kpiValue;
 
