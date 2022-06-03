@@ -1,9 +1,7 @@
 package com.smartcat.etljob.model;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,7 +10,8 @@ import java.time.LocalDate;
 @Table(name = "kpis")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class KPI {
 	@Id
 	@Column(name = "kpi_id")

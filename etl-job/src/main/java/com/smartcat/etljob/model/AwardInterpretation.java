@@ -1,28 +1,33 @@
 package com.smartcat.etljob.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "award_interpretations")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class AwardInterpretation {
 	@Id
-	@Column(name = "award_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "award_generator")
-	@SequenceGenerator(name="award_generator", sequenceName = "award_seq", initialValue = 10)
-	private long Id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
+	@Column(name = "award_id", updatable = false, nullable = false)
+	private UUID id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "shift_id", referencedColumnName = "shift_id")
-	@NotNull
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="shift_id", nullable=false)
 	private Shift shift;
 
 	@Column(name = "award_date")

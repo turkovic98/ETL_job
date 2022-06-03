@@ -1,28 +1,33 @@
 package com.smartcat.etljob.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Entity
 @Table(name = "breaks")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class Break {
 	@Id
-	@Column(name = "break_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "break_generator")
-	@SequenceGenerator(name="break_generator", sequenceName = "break_seq", initialValue = 10)
-	private long Id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
+	@Column(name = "break_id", updatable = false, nullable = false)
+	private UUID id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "shift_id", referencedColumnName = "shift_id")
-	@NotNull
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="shift_id", nullable=false)
 	private Shift shift;
 
 	@Column(name = "break_start")
@@ -41,5 +46,9 @@ public class Break {
 		this.breakStart = breakStart;
 		this.breakFinish = breakFinish;
 		this.isPaid = isPaid;
+	}
+
+	public Break(Shift shift, Timestamp breakStart, Timestamp breakFinish) {
+		this(shift, breakStart, breakFinish, false);
 	}
 }
