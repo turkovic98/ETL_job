@@ -28,7 +28,8 @@ public class HelloController {
 
 	@GetMapping("aaa")
 	public ResponseEntity<?> hello(){
-		KPI kpi = new KPI("emina", LocalDate.now(), 0.0);
+		KPI kpi = new KPI("emina1", LocalDate.now(), 0.0);
+		kpi.setId(55);
 		kpi = kpiRepository.save(kpi);
 		return new ResponseEntity<>(kpi.getKpiName(), HttpStatus.OK);
 	}

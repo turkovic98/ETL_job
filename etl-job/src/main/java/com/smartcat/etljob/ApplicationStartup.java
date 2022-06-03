@@ -21,10 +21,6 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		System.out.println("EMINAAAAAAAAAAAAAAAAAAAAA");
-		try {
-			etlJobService.createBreakAndShift();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		etlJobService.callShiftsAPI();
 	}
 }

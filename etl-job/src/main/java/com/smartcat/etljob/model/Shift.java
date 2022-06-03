@@ -26,6 +26,7 @@ public class Shift {
 		strategy = "org.hibernate.id.UUIDGenerator"
 	)
 	@Column(name = "shift_id", updatable = false, nullable = false)
+	//necemo imati od 23. do 27. linije za ocuvanje id-jeva
 	private UUID id;
 
 	@Column(name = "shift_date")
