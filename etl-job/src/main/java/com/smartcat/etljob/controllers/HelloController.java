@@ -29,14 +29,22 @@ public class HelloController {
 	@GetMapping("aaa")
 	public ResponseEntity<?> hello(){
 		KPI kpi = new KPI("emina1", LocalDate.now(), 0.0);
-		kpi.setId(55);
 		kpi = kpiRepository.save(kpi);
+
+		KPI kpi2 = new KPI("emina2", LocalDate.now(), 0.0);
+		kpi2 = kpiRepository.save(kpi2);
 		return new ResponseEntity<>(kpi.getKpiName(), HttpStatus.OK);
 	}
 
 	@GetMapping("")
 	public ResponseEntity<?> getShifts(){
 		List<Shift> shifts = shiftRepository.findAll();
+		return new ResponseEntity<>(shifts, HttpStatus.OK);
+	}
+
+	@GetMapping("break")
+	public ResponseEntity<?> getShiftsWithoutBreak(){
+		List<Shift> shifts = shiftRepository.getShiftsWithoutBreaks();
 		return new ResponseEntity<>(shifts, HttpStatus.OK);
 	}
 }

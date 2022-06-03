@@ -66,6 +66,18 @@ public class ETLJobService {
 				shifts.addAll(response.getResults());
 
 			}
+
+//			int i = 0;
+//
+//			while (i < 2) {
+//				System.out.println("\n\n----------------------------------------");
+//				System.out.println(response.getStart() + "\n\n");
+//				response = client.getNext(response.getStart() + response.getLimit(), LIMIT);
+//				System.out.println(response);
+//				shifts.addAll(response.getResults());
+//				i++;
+//
+//			}
 			System.out.println("\n\n K R A J !");
 			System.out.println(shifts.size());
 		} catch (Exception e) {

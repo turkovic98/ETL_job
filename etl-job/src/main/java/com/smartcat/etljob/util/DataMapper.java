@@ -68,4 +68,10 @@ public class DataMapper {
 		return Double.parseDouble(df.format(cost));
 	}
 
+	public static double trim2Decimals(double value){
+		DecimalFormat df = new DecimalFormat("#.##");
+		df.setRoundingMode(RoundingMode.CEILING);
+		return Double.parseDouble(df.format(value));
+	}
+
 }

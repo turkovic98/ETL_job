@@ -49,7 +49,7 @@ public class Shift {
 	private List<Break> breaks = new ArrayList<>();
 
 	@JsonManagedReference
-	@OneToMany(mappedBy="shift", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="shift", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Allowance> allowances = new ArrayList<>();
 
 	@JsonManagedReference

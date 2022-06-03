@@ -51,4 +51,14 @@ public class Break {
 	public Break(Shift shift, Timestamp breakStart, Timestamp breakFinish) {
 		this(shift, breakStart, breakFinish, false);
 	}
+
+	@Override
+	public String toString() {
+		return "\nBreak{" +
+			       "id=" + id +
+			       ", breakStart=" + breakStart +
+			       ", breakFinish=" + breakFinish +
+			       ", isPaid=" + isPaid +
+			       '}';
+	}
 }

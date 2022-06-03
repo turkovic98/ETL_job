@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "kpis")
+@Table(name = "kpis", uniqueConstraints = { @UniqueConstraint(columnNames = {"kpi_name", "kpi_date"}, name = "kpi_unique_constraint")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,11 +19,11 @@ public class KPI {
 	@SequenceGenerator(name="kpi_generator", sequenceName = "kpi_seq", initialValue = 10)
 	private long Id;
 
-	@Column(name = "kpi_name", unique = true)
+	@Column(name = "kpi_name")
 	@NotNull
 	private String kpiName;
 
-	@Column(name = "kpi_date", unique = true)
+	@Column(name = "kpi_date")
 	@NotNull
 	private LocalDate kpiDate;
 
