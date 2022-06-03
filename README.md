@@ -13,6 +13,7 @@ with
 $ docker-compose up -d
 ```
 4. In IntelliJ run EtlJobApplication 
+5. The application has finished with all data manipulation when all KPI values are printed in the console.
 
 ## Solution Explained
 
