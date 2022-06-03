@@ -1,5 +1,6 @@
 package com.smartcat.etljob.services;
 
+import com.smartcat.etljob.exceptions.KPICreationException;
 import com.smartcat.etljob.model.Allowance;
 import com.smartcat.etljob.model.Break;
 import com.smartcat.etljob.model.KPI;
@@ -31,13 +32,18 @@ public class KPIService {
 		this.breakRepository = breakRepository;
 	}
 
-	public void calculateKPIs(){
-		meanBreakLengthInMinutes();
-		meanShiftCost();
-		maxAllowanceCost14d();
-		maxBreakFreeShiftPeriodInDays();
-		minShiftLengthInHours();
-		totalNumberOfPaidBreaks();
+	public void calculateKPIs() throws KPICreationException {
+		try {
+			meanBreakLengthInMinutes();
+			meanShiftCost();
+			maxAllowanceCost14d();
+			maxBreakFreeShiftPeriodInDays();
+			minShiftLengthInHours();
+			totalNumberOfPaidBreaks();
+		} catch(Exception e){
+			throw new KPICreationException();
+		}
+
 	}
 
 	//mean_break_length_in_minutes

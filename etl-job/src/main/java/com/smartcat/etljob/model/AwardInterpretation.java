@@ -3,10 +3,8 @@ package com.smartcat.etljob.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -18,11 +16,6 @@ import java.util.UUID;
 @Setter
 public class AwardInterpretation {
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(
-		name = "UUID",
-		strategy = "org.hibernate.id.UUIDGenerator"
-	)
 	@Column(name = "award_id", updatable = false, nullable = false)
 	private UUID id;
 
@@ -43,10 +36,5 @@ public class AwardInterpretation {
 	@NotNull
 	private double awardCost;
 
-	public AwardInterpretation(Shift shift, LocalDate awardDate, float awardUnits, double awardCost) {
-		this.shift = shift;
-		this.awardDate = awardDate;
-		this.awardUnits = awardUnits;
-		this.awardCost = awardCost;
-	}
+
 }

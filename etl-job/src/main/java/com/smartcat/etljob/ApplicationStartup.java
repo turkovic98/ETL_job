@@ -1,5 +1,8 @@
 package com.smartcat.etljob;
 
+import com.smartcat.etljob.exceptions.KPICreationException;
+import com.smartcat.etljob.exceptions.ShiftCreationException;
+import com.smartcat.etljob.exceptions.ShiftsAPIException;
 import com.smartcat.etljob.services.ETLJobService;
 import com.smartcat.etljob.services.KPIService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +25,12 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
-		System.out.println("EMINAAAAAAAAAAAAAAAAAAAAA");
 		try {
 			etlJobService.getShifts();
 			kpiService.calculateKPIs();
-		} catch(Exception e) {
+		} catch (ShiftsAPIException | ShiftCreationException | KPICreationException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

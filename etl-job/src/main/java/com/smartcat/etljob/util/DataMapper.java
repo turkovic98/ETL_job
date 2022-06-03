@@ -53,13 +53,13 @@ public class DataMapper {
 	}
 
 	private static Allowance allowanceDtoToAllowance(AllowanceDTO dto, Shift shift){
-		return new Allowance(shift, dto.getValue(), trimDecimals(dto.getCost()));
+		return new Allowance(dto.getId(), shift, dto.getValue(), trimDecimals(dto.getCost()));
 	}
 	private static Break breakDtoToBreak(BreakDTO dto, Shift shift){
-		return new Break(shift, dto.getStart(), dto.getFinish(), dto.isPaid());
+		return new Break(dto.getId(), shift, dto.getStart(), dto.getFinish(), dto.isPaid());
 	}
 	private static AwardInterpretation awardInterpretationDtoToAwardInterpretation(AwardInterpretationDTO dto, Shift shift){
-		return new AwardInterpretation(shift, dto.getDate(), dto.getUnits(), trimDecimals(dto.getCost()));
+		return new AwardInterpretation(dto.getId(), shift, dto.getDate(), dto.getUnits(), trimDecimals(dto.getCost()));
 	}
 
 	public static double trimDecimals(double cost){

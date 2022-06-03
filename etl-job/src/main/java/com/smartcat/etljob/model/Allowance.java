@@ -3,7 +3,6 @@ package com.smartcat.etljob.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -16,11 +15,6 @@ import java.util.UUID;
 @Setter
 public class Allowance {
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(
-		name = "UUID",
-		strategy = "org.hibernate.id.UUIDGenerator"
-	)
 	@Column(name = "allowance_id", updatable = false, nullable = false)
 	private UUID id;
 
@@ -37,9 +31,4 @@ public class Allowance {
 	@NotNull
 	private double allowanceCost;
 
-	public Allowance(Shift shift, float allowanceValue, double allowanceCost) {
-		this.shift = shift;
-		this.allowanceValue = allowanceValue;
-		this.allowanceCost = allowanceCost;
-	}
 }

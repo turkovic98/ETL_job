@@ -3,7 +3,6 @@ package com.smartcat.etljob.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,13 +19,7 @@ import java.util.UUID;
 @Setter
 public class Shift {
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(
-		name = "UUID",
-		strategy = "org.hibernate.id.UUIDGenerator"
-	)
 	@Column(name = "shift_id", updatable = false, nullable = false)
-	//necemo imati od 23. do 27. linije za ocuvanje id-jeva
 	private UUID id;
 
 	@Column(name = "shift_date")
@@ -56,8 +49,8 @@ public class Shift {
 	@OneToMany(mappedBy="shift", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<AwardInterpretation> awardInterpretations = new ArrayList<>();
 
-
-	public Shift(LocalDate shiftDate, Timestamp shiftStart, Timestamp shiftFinish, double shiftCost) {
+	public Shift(UUID id, LocalDate shiftDate, Timestamp shiftStart, Timestamp shiftFinish, double shiftCost) {
+		this.id = id;
 		this.shiftDate = shiftDate;
 		this.shiftStart = shiftStart;
 		this.shiftFinish = shiftFinish;
